@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<InfluenceTemplates>
+   <InfluenceTemplate InfluenceID="Proximity" TemplateSize="30"/>
+   <InfluenceTemplate InfluenceID="Proximity" TemplateSize="24"/>
+   <InfluenceTemplate InfluenceID="Proximity" TemplateSize="60"/>
+   <InfluenceTemplate InfluenceID="Proximity" TemplateSize="3"/>
+   <InfluenceTemplate InfluenceID="Proximity" TemplateSize="40"/>
+   <InfluenceTemplate InfluenceID="Proximity" TemplateSize="45"/>
+   <InfluenceTemplate InfluenceID="Proximity" TemplateSize="7"/>
+   <InfluenceTemplate InfluenceID="Proximity" TemplateSize="16"/>
+
+   <InfluenceTemplate InfluenceID="Threat" TemplateSize="120"/>
+   <InfluenceTemplate InfluenceID="Threat" TemplateSize="80"/>
+   <InfluenceTemplate InfluenceID="Threat" TemplateSize="60"/>
+   <InfluenceTemplate InfluenceID="Threat" TemplateSize="50"/>
+   <InfluenceTemplate InfluenceID="Threat" TemplateSize="30"/>
+   <InfluenceTemplate InfluenceID="Threat" TemplateSize="200"/>
+   <InfluenceTemplate InfluenceID="Threat" TemplateSize="5"/>
+   <InfluenceTemplate InfluenceID="Threat" TemplateSize="7"/>
+   <InfluenceTemplate InfluenceID="Threat" TemplateSize="16"/>
+
+   <InfluenceTemplate InfluenceID="Cover" TemplateSize="5"/>
+   <InfluenceTemplate InfluenceID="Cover" TemplateSize="7"/>
+</InfluenceTemplates>

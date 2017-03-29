@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<BaseMaps>
+   <BaseMap InfluenceID="Proximity" ObjectTag="Player"/>
+   <BaseMap InfluenceID="Proximity" ObjectTag="Agent"/>
+   <BaseMap InfluenceID="Proximity" ObjectTag="Chokepoint"/>
+   <BaseMap InfluenceID="Proximity" ObjectTag="Wall"/>
+
+   <BaseMap InfluenceID="Threat" ObjectTag="Player"/>
+   <BaseMap InfluenceID="Threat" ObjectTag="Agent"/>
+   <BaseMap InfluenceID="Threat" ObjectTag="Chokepoint"/>
+
+   <BaseMap InfluenceID="Cover" ObjectTag="Cover"/>
+
+</BaseMaps>

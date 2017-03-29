@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!--
+   Attributes:
+   MapFormula/FormulaID = name of the formula
+   Operation/Type = "Add", "AddInverse", "Multiply", or "Normalize"
+   Operation/InfluenceID = name of the influence type
+   Operation/ObjectTag = object tag on the map
+   Operation/Weight = weighted value of operation
+-->
+
+<MapFormulas>
+   <MapFormula FormulaID="BattleFront">
+      <Operation Type="Add" InfluenceID="Threat" ObjectTag="Player"/>
+      <Operation Type="Multiply" InfluenceID="Threat" ObjectTag="Agent"/>
+      <Operation Type="Normalize"/>
+   </MapFormula>
+
+   <MapFormula FormulaID="PlayerSafeSpot">
+      <Operation Type="AddInverse" InfluenceID="Threat" ObjectTag="Agent"/>
+      <Operation Type="Add" InfluenceID="Threat" ObjectTag="Cover"/>
+      <Operation Type="Multiply" InfluenceID="Proximity" ObjectTag="Player"/>
+   </MapFormula>
+
+   <MapFormula FormulaID="CoverNearAgent">
+      <Operation Type="Add" InfluenceID="Cover" ObjectTag="Cover"/>
+      <Operation Type="Normalize"/>
+      <Operation Type="Multiply" InfluenceID="Threat" ObjectTag="Agent"/>
+      <Operation Type="Normalize"/>
+      <Operation Type="Add" InfluenceID="Proximity" ObjectTag="Agent" Weight="-0.3"/>
+   </MapFormula>
+
+   <MapFormula FormulaID="AgentFlankNearChokePoint">
+      <Operation Type="Add" InfluenceID="Threat" ObjectTag="ChokePoint"/>
+      <Operation Type="Multiply" InfluenceID="Cover" ObjectTag="Cover"/>
+      <Operation Type="Normalize"/>
+      <Operation Type="Add" InfluenceID="Proximity" ObjectTag="ChokePoint" Weight="-1"/>
+      <Operation Type="Add" InfluenceID="Proximity" ObjectTag="Agent" Weight="-0.8"/>
+   </MapFormula>
+
+   <MapFormula FormulaID="PlayerFlanking">
+      <Operation Type="Add" InfluenceID="Threat" ObjectTag="Player"/>
+      <Operation Type="AddInverse" InfluenceID="Proximity" ObjectTag="Player"/>
+      <Operation Type="Normalize"/>
+      <Operation Type="Multiply" InfluenceID="Cover" ObjectTag="Cover"/>
+      <Operation Type="Add" InfluenceID="Proximity" ObjectTag="Player" Weight="-1.0"/>
+      <Operation Type="Add" InfluenceID="Proximity" ObjectTag="Agent" Weight="-1"/>
+      <Operation Type="Multiply" InfluenceID="Threat" ObjectTag="Player" Weight="1"/>
+      <Operation Type="Normalize"/>
+   </MapFormula>
+
+</MapFormulas>

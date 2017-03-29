@@ -1,0 +1,19 @@
+﻿#pragma kernel CSMain
+
+StructuredBuffer<float2> DataBuffer;
+RWTexture2D<float4> Result;
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+	float2 currentPointInTextureSpace = id.xy;
+	float2 currentPointInWorldSpace;
+	currentPointInWorldSpace.x = (currentPointInTextureSpace.x / 256.0) * 30.0;
+	currentPointInWorldSpace.y = (currentPointInTextureSpace.y / 256.0) * 30.0;
+	
+	float2 playerPosition = DataBuffer[0];
+	float distanceFromPlayerToPoint = distance(playerPosition, currentPointInWorldSpace);
+	float influenceFromPlayer = 1.0 / pow(distanceFromPlayerToPoint + 1.0, 2);
+	
+	Result[currentPointInTextureSpace] = float4(influenceFromPlayer, 0, 0, 1);
+}

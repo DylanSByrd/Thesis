@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Domain>
+   <CompoundTask name="Kill_Player">
+      <Method>
+         <Subtasks>
+            <Task name="Do_Strategy"/>
+         </Subtasks>
+      </Method>
+   </CompoundTask>
+
+   <CompoundTask name="Do_Strategy">
+      <Method>
+         <Precondition name="Strategy" operator="=" value="Ambush"/>
+         <Subtasks>
+            <Task name="Ambush_Player"/>
+         </Subtasks>
+      </Method>
+
+      <Method>
+         <Precondition name="Strategy" operator="=" value="Flank"/>
+         <Subtasks>
+            <Task name="Flank_Player"/>
+         </Subtasks>
+      </Method>
+   </CompoundTask>
+
+   <CompoundTask name="Ambush_Player">
+      <Method>
+         <Precondition name="Num_Buttons" operator=">" value="0"/>
+         <Precondition name="Does_Choke_Point_Exist" operator="=" value="true"/>
+         <Subtasks>
+            <Task name="Create_Choke_Point"/>
+            <Task name="Flank_Choke_Point"/>
+         </Subtasks>
+      </Method>
+
+      <Method>
+         <Precondition name="Does_Choke_Point_Exist" operator="=" value="true"/>
+         <Subtasks>
+            <Task name="Flank_Choke_Point"/>
+         </Subtasks>
+      </Method>
+
+      <Method>
+         <Subtasks>
+            <Task name="Flank_Player"/>
+         </Subtasks>
+      </Method>
+   </CompoundTask>
+
+   <CompoundTask name="Create_Choke_Point">
+      <Method>
+         <Precondition name="Num_Buttons" operator=">" value="0"/>
+         <Subtasks>
+            <Task name="Move_To_And_Toggle_Button">
+               <Modifier name="reserve"/>
+            </Task>
+            <Task name="Create_Choke_Point"/>
+         </Subtasks>
+      </Method>
+
+      <Method>
+         <Subtasks>
+            <Task name="Cover_Squad">
+               <Modifier name="sync"/>
+            </Task>
+         </Subtasks>
+      </Method>
+   </CompoundTask>
+
+   <CompoundTask name="Move_To_And_Toggle_Button">
+      <Method>
+         <Subtasks>
+            <Task name="Claim_And_Move_To_Button"/>
+            <Task name="Toggle_Button">
+               <Modifier name="blocking"/>
+            </Task>
+         </Subtasks>
+      </Method>
+   </CompoundTask>
+
+   <PrimitiveTask name="Claim_And_Move_To_Button">
+      <Operator name="MoveToButtonOperator"/>
+   </PrimitiveTask>
+
+   <PrimitiveTask name="Toggle_Button">
+      <Operator name="ToggleButtonOperator"/>
+      <Effect name="Num_Buttons" operator="-" value="1"/>
+   </PrimitiveTask>
+
+   <PrimitiveTask name="Cover_Squad">
+      <Operator name="MoveToInfluenceOperator">
+         <Parameter name="Influence" value="Formula_CoverNearAgent"/>
+      </Operator>
+   </PrimitiveTask>
+
+   <PrimitiveTask name="Flank_Choke_Point">
+      <Operator name="MoveToInfluenceOperator">
+         <Parameter name="Influence" value="Formula_AgentFlankNearChokePoint"/>
+      </Operator>
+   </PrimitiveTask>
+
+   <PrimitiveTask name="Flank_Player">
+      <Operator name="MoveToInfluenceOperator">
+         <Parameter name="Influence" value="Formula_PlayerFlanking"/>
+      </Operator>
+   </PrimitiveTask>
+
+
+</Domain>

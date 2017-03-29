@@ -1,0 +1,28 @@
+﻿#pragma kernel CSMain
+
+StructuredBuffer<float2> DataBuffer;
+RWTexture2D<float4> Result;
+
+[numthreads(8,8,1)]
+void CSMain (uint3 id : SV_DispatchThreadID)
+{
+	float2 currentPointInTextureSpace = id.xy;
+	float2 currentPointInWorldSpace;
+	currentPointInWorldSpace.x = (currentPointInTextureSpace.x / 256.0) * 30.0;
+	currentPointInWorldSpace.y = (currentPointInTextureSpace.y / 256.0) * 30.0;
+	
+	uint agentCount;
+	uint stride;
+	DataBuffer.GetDimensions(agentCount, stride);
+
+	float totalInfluence = 0.0;
+	for (uint agentIndex = 0; agentIndex < agentCount; ++agentIndex)
+	{
+		float2 agentPosition = DataBuffer[agentIndex];
+		float distanceFromAgentToPoint = distance(agentPosition, currentPointInWorldSpace);
+		float influenceFromAgent = 1.0 / pow(distanceFromAgentToPoint + 1.0, 2);
+		totalInfluence += influenceFromAgent;
+	}
+	
+	Result[currentPointInTextureSpace] = float4(totalInfluence, 0, 0, 1);
+}

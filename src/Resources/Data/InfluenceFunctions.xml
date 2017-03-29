@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<InfluenceFunctions>
+   <InfluenceFunction InfluenceID="Proximity" InfluenceMax="1" DistanceMax="24" FalloffExponent="1"/>
+   <InfluenceFunction InfluenceID="Threat" InfluenceMax="1" DistanceMax="50" FalloffExponent="4"/>
+   <InfluenceFunction InfluenceID="Cover" DistanceMin="3" DistanceMax="2" FalloffExponent="4"/>
+</InfluenceFunctions>
